@@ -19,6 +19,7 @@ var intervalTime = "";
 var nextTrain = "";
 var minutesAway = "";
 var rowCount = 0;
+var toggleBoolean = false;
 console.log("anything");
 
 $("#submit").click(function (event) {
@@ -106,8 +107,76 @@ function updateTime() {
                 var thisRow = childSnapshot.val().row;
                 var idNameNext = "next-train" + thisRow;
                 var idNameMinutes = "minutes-away" + thisRow;
-                $("#"+idNameNext).text(newTime);
-                $("#"+idNameMinutes).text(newMinutes);
+                $("#" + idNameNext).text(newTime);
+                $("#" + idNameMinutes).text(newMinutes);
             });
         });
 }
+
+// login tutorial 
+// https://www.youtube.com/watch?v=iKlWaUszxB4
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+
+        $("#schedule").show();
+        $("#sign-in").hide();
+        $("#create-user-form").hide();
+
+    } else {
+
+        $("#schedule").hide();
+        $("#sign-in").show();
+        $("#create-user-form").hide();
+
+    }
+});
+
+function signInToggle() {
+    if (toggleBoolean) {
+        $("#schedule").hide();
+        $("#sign-in").show();
+        $("#create-user-form").hide();
+        toggleBoolean = false;
+    } else {
+        $("#schedule").hide();
+        $("#sign-in").hide();
+        $("#create-user-form").show();
+        toggleBoolean = true;
+    }
+
+}
+
+function createUser() {
+    var email = $("#inputEmailCreate").val();
+    var password = $("#inputPasswordCreate").val();
+    console.log(email, password);
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        window.alert(errorMessage);
+    });
+}
+
+function signIn() {
+    var passwordSign = $("#inputPassword").val();
+    var emailSign = $("#inputEmail").val();
+    firebase.auth().signInWithEmailAndPassword(emailSign, passwordSign).catch(function (error) {
+        // Handle Errors here.
+        var errorCode2 = error.code;
+        var errorMessage2 = error.message;
+        window.alert(errorMessage2);
+    });
+}
+
+function logOut() {
+    firebase.auth().signOut();
+}
+
+
+$("#user-login").on("click", signIn);
+$("#create-user").on("click", signInToggle);
+$("#user-create").on("click", createUser);
+$("#sign-in-page").on("click", signInToggle);
+$("#logout").on("click", logOut);

@@ -1,0 +1,25 @@
+#logout {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+#table-div {
+    margin: auto;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 50px;
+    overflow-x: auto;
+}
+
+#form-div {
+    margin: auto;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 50px;
+}

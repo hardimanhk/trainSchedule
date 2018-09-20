@@ -15,56 +15,94 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
     <title>Train Schedule</title>
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Train Schedule</h1>
-            <p class="lead">Wow. Look at that.</p>
+    <div id="sign-in">
+        <!-- <form class="form-signin" action="index.html" method="post"> -->
+            <img class="mb-4" src="assets/images/red-bullet.jpg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="user-login">Sign in</button>
+            <p>Don't have an account?</p>
+            <button class="btn btn-lg btn-primary btn-block" id="create-user">Create Account</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+        <!-- </form> -->
+    </div>
+
+    <div id="create-user-form">
+        <!-- <form class="form-signin" action="index.html" method="post"> -->
+            <img class="mb-4" src="assets/images/red-bullet.jpg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
+            <label for="inputEmailCreate" class="sr-only">Email address</label>
+            <input type="email" id="inputEmailCreate" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPasswordCreate" class="sr-only">Create Password</label>
+            <input type="password" id="inputPasswordCreate" class="form-control" placeholder="Create Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="user-create">Submit</button>
+            <p>Already have an account?</p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="sign-in-page">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+        <!-- </form> -->
+    </div>
+
+    <div id="schedule">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Train Schedule</h1>
+                <p class="lead">Wow. Look at that.</p>
+                <button class="btn btn-primary" id="logout">Logout</button>
+            </div>
+        </div>
+        <div id="table-div">
+            <h2>Current Train Schedule</h2>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody id="train-table-body">
+
+                </tbody>
+            </table>
+        </div>
+        <div id="form-div">
+            <h2>Add Train</h2>
+            <form>
+                <div class="form-group">
+                    <label for="train-name">Train Name</label>
+                    <input type="text" class="form-control" id="train-name" placeholder="Polar Express">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" class="form-control" id="destination" placeholder="North Pole">
+                </div>
+                <div class="form-group">
+                    <label for="first-time">First Train Time (HH:mm - military time)</label>
+                    <input type="text" class="form-control" id="first-time" placeholder="00:00">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency (min)</label>
+                    <input type="number" class="form-control" id="frequency" placeholder="3">
+                </div>
+                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
-    <div id="table-div">
-        <h2>Current Train Schedule</h2>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Train Name</th>
-                    <th scope="col">Destination</th>
-                    <th scope="col">Frequency (min)</th>
-                    <th scope="col">Next Arrival</th>
-                    <th scope="col">Minutes Away</th>
-                </tr>
-            </thead>
-            <tbody id="train-table-body">
 
-            </tbody>
-        </table>
-    </div>
-    <div id="form-div">
-        <h2>Add Train</h2>
-        <form>
-            <div class="form-group">
-                <label for="train-name">Train Name</label>
-                <input type="text" class="form-control" id="train-name" placeholder="Polar Express">
-            </div>
-            <div class="form-group">
-                <label for="destination">Destination</label>
-                <input type="text" class="form-control" id="destination" placeholder="North Pole">
-            </div>
-            <div class="form-group">
-                <label for="first-time">First Train Time (HH:mm - military time)</label>
-                <input type="text" class="form-control" id="first-time" placeholder="00:00">
-            </div>
-            <div class="form-group">
-                <label for="frequency">Frequency (min)</label>
-                <input type="number" class="form-control" id="frequency" placeholder="3">
-            </div>
-            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+
 
     <script src="assets/javascript/game.js"></script>
 </body>
