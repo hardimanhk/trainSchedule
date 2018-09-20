@@ -23,3 +23,15 @@
     padding: 10px;
     margin-bottom: 50px;
 }
+
+@media only screen and (max-width: 550px) {
+    #logout {
+        position: relative;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        margin-bottom: 15px;
+    }
+
+}
