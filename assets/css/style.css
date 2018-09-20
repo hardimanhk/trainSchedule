@@ -24,6 +24,55 @@
     margin-bottom: 50px;
 }
 
+#sign-in {
+    text-align: center;
+    margin: auto;
+    margin-top: 75px;
+    width: 25%;
+}
+
+#inputPassword {
+    margin-bottom: 10px;
+}
+
+#dont {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#create-user-form {
+    text-align: center;
+    margin: auto;
+    margin-top: 75px;
+    width: 25%;
+}
+
+#inputPasswordCreate {
+    margin-bottom: 10px;
+}
+
+#already {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+    #sign-in {
+        text-align: center;
+        margin: auto;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    #create-user-form {
+        text-align: center;
+        margin: auto;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+
 @media only screen and (max-width: 550px) {
     #logout {
         position: relative;

@@ -171,13 +171,13 @@ function signIn() {
 }
 
 function googleLogin() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    var googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(googleProvider);
 }
 
 function githubLogin() {
-    var provider = new firebase.auth.GithubAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    var githubProvider = new firebase.auth.GithubAuthProvider();
+    firebase.auth().signInWithRedirect(githubProvider);
     // firebase.auth().getRedirectResult().then(function (result) {
     //     if (result.credential) {
     //         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
